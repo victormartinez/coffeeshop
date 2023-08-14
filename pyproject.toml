@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "coffeeshop"
+version = "0.1.0"
+description = ""
+authors = ["Victor Martinez <victor.martinez@lend.tech>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asyncio = "^3.4.3"
+pydantic = "^2.1.1"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.14.0"
+pytest-asyncio = "^0.21.1"
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
