@@ -75,7 +75,7 @@ run-server:
 
 .PHONY: run-client
 run-client:
-	python -m coffeeshop.guest.client $(FILEPATH)
+	python -m coffeeshop.infrastructure.client $(FILEPATH)
 
 .PHONY: test
 test:
