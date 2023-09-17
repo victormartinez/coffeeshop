@@ -1,7 +1,7 @@
 from decimal import Decimal
 from typing import Any, List, Tuple
 
-from coffeeshop.domain.entities.menu import Menu, MenuItem
+from coffeeshop.domain.menu.dto import Menu, MenuItem
 
 from .interfaces import AbstractMenuBuilder
 

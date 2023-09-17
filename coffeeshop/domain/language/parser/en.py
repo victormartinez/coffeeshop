@@ -1,8 +1,8 @@
 import re
 from typing import List
 
-from coffeeshop.app.language.interfaces import AbstractLanguageParser
-from coffeeshop.app.language.dto import (
+from coffeeshop.domain.language.interfaces import AbstractLanguageParser
+from coffeeshop.domain.language.dto import (
     ParsedSentence,
     ParsedProduct,
     ParsedAction,
