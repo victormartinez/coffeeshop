@@ -1,37 +1,45 @@
 import re
 from typing import List
 
-from coffeeshop.app.language.interfaces import LanguageParser
-from coffeeshop.domain.entity import Command, Action
+from coffeeshop.app.language.interfaces import AbstractLanguageParser
+from coffeeshop.domain.entities.parsed_sentence import (
+    ParsedSentence,
+    ParsedProduct,
+    ParsedAction,
+    ActionType,
+)
 
 
-class EnParser(LanguageParser):
+class EnParser(AbstractLanguageParser):
 
-    async def run(self, sentence: str) -> Command:
+    async def run(self, sentence: str) -> ParsedSentence:
         cleaned_sentence = re.sub(r'[^\w\s]', '', sentence).upper()
         tokens = cleaned_sentence.split(" ")
         intent_tokens = ["ID", "DONT", "LIKE", "WANT"]
         is_product = len(set(intent_tokens).intersection(tokens))
         if is_product:
-            return await self._parse_product(tokens)
-        return await self._parse_action(tokens)
+            product = await self._parse_product(tokens)
+            return ParsedSentence(product=product)
+        
+        action = await self._parse_action(tokens)
+        return ParsedSentence(action=action)
 
-    async def _parse_product(self, tokens: List[str]) -> Command:
+    async def _parse_product(self, tokens: List[str]) -> ParsedProduct:
         order_item_token = tokens[-1]
         should_add = 'DONT' not in tokens
-        return Command(product=order_item_token, add=should_add)
+        return ParsedProduct(add=should_add, name=order_item_token)
 
-    async def _parse_action(self, tokens: List[str]) -> Command:
+    async def _parse_action(self, tokens: List[str]) -> ParsedAction:
         if "THATS" in tokens and "ALL" in tokens:
-            return Command(action=Action.FINISH)
+            return ParsedAction(type=ActionType.FINISH)
         
         if "YES" in tokens and "PLEASE" in tokens:
-            return Command(action=Action.YES)
+            return ParsedAction(type=ActionType.YES)
         
         if "NO" in tokens and "THANK" in tokens:
-            return Command(action=Action.NO)
+            return ParsedAction(type=ActionType.NO)
 
         if "LET" in tokens and "THINK" in tokens:
-            return Command(action=Action.THINK)
+            return ParsedAction(type=ActionType.THINK)
         
-        return Command(action=Action.UNKNOWN)
+        return ParsedAction(type=ActionType.UNKNOWN)

@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
-from coffeeshop.domain.entity import Command
+from coffeeshop.domain.entities.parsed_sentence import ParsedSentence
 
 
-class LanguageParser(ABC):
+class AbstractLanguageParser(ABC):
 
     @abstractmethod
-    async def run(self, sentence: str) -> Command:
+    async def run(self, sentence: str) -> ParsedSentence:
         pass
