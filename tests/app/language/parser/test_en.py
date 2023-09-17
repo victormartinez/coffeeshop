@@ -1,7 +1,7 @@
 import pytest
 
 from coffeeshop.app.language import factory
-from coffeeshop.domain.entities.parsed_sentence import ParsedSentence, ParsedProduct, ParsedAction, ActionType
+from coffeeshop.app.language.dto import ParsedSentence, ParsedProduct, ParsedAction, ActionType
 
 
 

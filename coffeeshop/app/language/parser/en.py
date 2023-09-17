@@ -2,7 +2,7 @@ import re
 from typing import List
 
 from coffeeshop.app.language.interfaces import AbstractLanguageParser
-from coffeeshop.domain.entities.parsed_sentence import (
+from coffeeshop.app.language.dto import (
     ParsedSentence,
     ParsedProduct,
     ParsedAction,
