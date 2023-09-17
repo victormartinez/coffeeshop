@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from .entity import Command
+from coffeeshop.domain.entity import Command
 
 
 class LanguageParser(ABC):

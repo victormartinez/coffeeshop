@@ -24,16 +24,16 @@ class Command(BaseModel):
         return bool(self.action)
 
     def is_finish(self):
-        return self.type == Action.FINISH
+        return self.action == Action.FINISH
 
     def is_yes(self):
-        return self.type == Action.YES
+        return self.action == Action.YES
 
     def is_no(self):
-        return self.type == Action.NO
+        return self.action == Action.NO
 
     def is_think(self):
-        return self.type == Action.THINK
+        return self.action == Action.THINK
 
     def is_unknown(self):
-        return self.type == Action.UNKNOWN
+        return self.action == Action.UNKNOWN

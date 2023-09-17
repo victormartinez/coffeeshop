@@ -2,7 +2,7 @@ import re
 from typing import List
 
 from coffeeshop.app.language.interfaces import LanguageParser
-from coffeeshop.app.language.entity import Command, Action
+from coffeeshop.domain.entity import Command, Action
 
 
 class EnParser(LanguageParser):
