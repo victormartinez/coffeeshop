@@ -2,7 +2,7 @@
 name = "coffeeshop"
 version = "0.1.0"
 description = ""
-authors = ["Victor Martinez <victor.martinez@lend.tech>"]
+authors = ["Victor Martinez <vcrmartinez@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
