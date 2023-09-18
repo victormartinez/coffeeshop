@@ -13,6 +13,7 @@ async def handle_client(
         line = (await reader.readline()).decode("utf8").strip()
         if line == "":
             continue
+
         print(f"Guest: {line}")
         answer: str = await ai_service.reply(line)
         print(f"Employee: {answer}")
