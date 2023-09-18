@@ -1,9 +1,8 @@
-from enum import Enum, auto
 from typing import Optional
 
 from pydantic import BaseModel
 
-from .enums import ActionType
+from ...domain.language.enums import ActionType
 
 
 class ParsedAction(BaseModel):

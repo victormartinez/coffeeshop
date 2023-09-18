@@ -79,9 +79,9 @@ run-client:
 
 .PHONY: test
 test:
-	pytest tests/unit/ -vv
+	pytest tests/ -vv
 
 .PHONY: coverage
 coverage:
-	coverage run -m pytest tests/unit/ -vv
+	coverage run -m pytest tests/ -vv
 	coverage report -m

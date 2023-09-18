@@ -1,7 +1,7 @@
 import pytest
 
-from coffeeshop.app.language import factory
-from coffeeshop.app.language.dto import ParsedSentence, ParsedProduct, ParsedAction, ActionType
+from coffeeshop.infrastructure.language import factory
+from coffeeshop.infrastructure.language.dto import ParsedSentence, ParsedProduct, ParsedAction, ActionType
 
 
 
@@ -73,6 +73,6 @@ from coffeeshop.app.language.dto import ParsedSentence, ParsedProduct, ParsedAct
 )
 @pytest.mark.asyncio
 async def test_parse_sentence(sentence, expected):
-    parser = factory.create_parser('en')
+    parser = await factory.create_parser()
     actual = await parser.run(sentence)
     assert actual == expected

@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from typing import Optional, Protocol
 
 from coffeeshop.domain.language.enums import ActionType
-from coffeeshop.domain.language.dto import ParsedSentence
 
 
 class ParsedAction(Protocol):

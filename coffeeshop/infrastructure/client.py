@@ -3,21 +3,22 @@ import sys
 import asyncio
 
 import settings
-from coffeeshop import utils
+from coffeeshop.infrastructure.file.reader import read_file
 
 
 async def run_client(filepath: str) -> None:
     try:
-        sentences = await utils.input_to_sentences(filepath)
-        reader, writer = await asyncio.open_connection(settings.DEFAULT_HOST, settings.DEFAULT_PORT)
-        for row in sentences:
-            if not row:
-                break
+        reader, writer = await asyncio.open_connection(
+            settings.DEFAULT_HOST, settings.DEFAULT_PORT
+        )
+        async for sentence in read_file(filepath):
+            if sentence:
+                writer.write(f"{sentence}\n".encode())
+                data = await reader.read(100000)
+                print(data.decode().strip())
 
-            writer.write(f"{row}\n".encode())
-            data = await reader.read(100000)
-            print(data.decode().strip())
-
+        writer.close()
+        await writer.wait_closed()
     except OSError as exc:
         print(str(exc))
 
