@@ -6,10 +6,9 @@ from coffeeshop.domain.menu.interfaces import MenuItem
 
 
 class InMemoryCart(AbstractCart):
-
     def __init__(self) -> None:
         self._cart: List[MenuItem] = []
-    
+
     async def add(self, item: MenuItem) -> None:
         self._cart.append(item)
 
@@ -23,7 +22,7 @@ class InMemoryCart(AbstractCart):
         if self._cart:
             return self._cart[-1]
         return None
-    
+
     async def contains(self, name: str) -> bool:
         try:
             next(filter(lambda i: i.name.upper() == name.upper(), self._cart))
@@ -32,4 +31,4 @@ class InMemoryCart(AbstractCart):
             return False
 
     async def calc_total(self) -> Decimal:
-        return sum([i.price for i in self._cart])
+        return Decimal(f"{sum([i.price for i in self._cart])}")

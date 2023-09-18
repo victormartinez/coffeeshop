@@ -1,8 +1,12 @@
 import pytest
 
 from coffeeshop.infrastructure.language import factory
-from coffeeshop.infrastructure.language.dto import ParsedSentence, ParsedProduct, ParsedAction, ActionType
-
+from coffeeshop.infrastructure.language.dto import (
+    ActionType,
+    ParsedActionDto,
+    ParsedProductDto,
+    ParsedSentenceDto,
+)
 
 
 @pytest.mark.parametrize(
@@ -10,65 +14,61 @@ from coffeeshop.infrastructure.language.dto import ParsedSentence, ParsedProduct
     [
         (
             "I'd like a Latte.",
-            ParsedSentence(product=ParsedProduct(add=True, name="LATTE"))
+            ParsedSentenceDto(product=ParsedProductDto(add=True, name="LATTE")),
         ),
         (
             "I'd like a Macchiato.",
-            ParsedSentence(product=ParsedProduct(add=True, name="MACCHIATO"))
+            ParsedSentenceDto(product=ParsedProductDto(add=True, name="MACCHIATO")),
         ),
         (
             "I'd like a Tea.",
-            ParsedSentence(product=ParsedProduct(add=True, name="TEA"))
+            ParsedSentenceDto(product=ParsedProductDto(add=True, name="TEA")),
         ),
         (
             "I'd like a Cookie.",
-            ParsedSentence(product=ParsedProduct(add=True, name="COOKIE"))
+            ParsedSentenceDto(product=ParsedProductDto(add=True, name="COOKIE")),
         ),
         (
             "I'd like an Americano.",
-            ParsedSentence(product=ParsedProduct(add=True, name="AMERICANO"))
+            ParsedSentenceDto(product=ParsedProductDto(add=True, name="AMERICANO")),
         ),
         (
             "I want something",
-            ParsedSentence(product=ParsedProduct(add=True, name="SOMETHING"))
+            ParsedSentenceDto(product=ParsedProductDto(add=True, name="SOMETHING")),
         ),
         (
             "I don't want a Latte.",
-            ParsedSentence(product=ParsedProduct(add=False, name="LATTE"))
+            ParsedSentenceDto(product=ParsedProductDto(add=False, name="LATTE")),
         ),
         (
             "I don't want a Macchiato.",
-            ParsedSentence(product=ParsedProduct(add=False, name="MACCHIATO"))
+            ParsedSentenceDto(product=ParsedProductDto(add=False, name="MACCHIATO")),
         ),
         (
             "I don't want a Tea.",
-            ParsedSentence(product=ParsedProduct(add=False, name="TEA"))
+            ParsedSentenceDto(product=ParsedProductDto(add=False, name="TEA")),
         ),
         (
             "I don't want a Cookie.",
-            ParsedSentence(product=ParsedProduct(add=False, name="COOKIE"))
+            ParsedSentenceDto(product=ParsedProductDto(add=False, name="COOKIE")),
         ),
         (
             "I don't want an Americano.",
-            ParsedSentence(product=ParsedProduct(add=False, name="AMERICANO"))
+            ParsedSentenceDto(product=ParsedProductDto(add=False, name="AMERICANO")),
         ),
-
         (
             "That's all.",
-            ParsedSentence(action=ParsedAction(type=ActionType.FINISH))
+            ParsedSentenceDto(action=ParsedActionDto(type=ActionType.FINISH)),
         ),
         (
             "Yes, please.",
-            ParsedSentence(action=ParsedAction(type=ActionType.YES))
+            ParsedSentenceDto(action=ParsedActionDto(type=ActionType.YES)),
         ),
         (
             "No, thank you.",
-            ParsedSentence(action=ParsedAction(type=ActionType.NO))
+            ParsedSentenceDto(action=ParsedActionDto(type=ActionType.NO)),
         ),
-        (
-            "",
-            ParsedSentence(action=ParsedAction(type=ActionType.UNKNOWN))
-        ),
+        ("", ParsedSentenceDto(action=ParsedActionDto(type=ActionType.UNKNOWN))),
     ],
 )
 @pytest.mark.asyncio

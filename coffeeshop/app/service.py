@@ -1,16 +1,16 @@
 from coffeeshop.domain.cart.interfaces import AbstractCart
-from coffeeshop.domain.menu.interfaces import Menu
 from coffeeshop.domain.language.enums import ActionType
 from coffeeshop.domain.language.interfaces import (
     AbstractLanguageParser,
-    ParsedSentence,
     ParsedAction,
+    ParsedSentence,
 )
+from coffeeshop.domain.menu.interfaces import Menu
 
 
 class OrderAiService:
-
-    def __init__(self,
+    def __init__(
+        self,
         lang_parser: AbstractLanguageParser,
         cart: AbstractCart,
         menu: Menu,
@@ -39,36 +39,36 @@ class OrderAiService:
             if action.type == ActionType.THINK:
                 # TODO: Implement wait 10 seconds
                 return "Please let me know when you are ready."
-            
+
             if action.type == ActionType.YES:
                 # Guest wants the Cookie upsell
-                menu_item = await self._menu.get_item_by_name('COOKIE')
+                menu_item = await self._menu.get_item_by_name("COOKIE")
                 if not menu_item:
                     # TODO: better error handling
                     raise Exception("Unknown")
                 await self._cart.add(menu_item)
                 return "Would you like anything else?"
-                
+
             if action.type == ActionType.NO:
                 # Guest does not want the Cookie upsell
                 return "Would you like anything else?"
-            
+
             if action.type == ActionType.FINISH:
                 total = await self._cart.calc_total()
                 return f"Your total is ${total}. Thank you and have a nice day!"
 
         raise Exception("Unknown")
-    
-    async def _should_upsell_cookie(self):
+
+    async def _should_upsell_cookie(self) -> bool:
         if await self._cart.is_empty():
             return False
-        
+
         if self._has_suggested_cookie:
             return False
-        
+
         # TODO: fix Magic String
-        if await self._cart.contains('COOKIE'):
+        if await self._cart.contains("COOKIE"):
             return False
-        
+
         menu_item = await self._cart.get_previous()
-        return menu_item.is_drink
+        return menu_item.is_drink if menu_item else False

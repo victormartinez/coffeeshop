@@ -6,7 +6,6 @@ from coffeeshop.domain.menu.interfaces import MenuItem
 
 
 class AbstractCart(ABC):
-
     @abstractmethod
     async def add(self, item: MenuItem) -> None:
         pass

@@ -5,15 +5,15 @@ from pydantic import BaseModel
 from ...domain.language.enums import ActionType
 
 
-class ParsedAction(BaseModel):
+class ParsedActionDto(BaseModel):
     type: ActionType
 
 
-class ParsedProduct(BaseModel):
+class ParsedProductDto(BaseModel):
     add: bool
     name: str
 
 
-class ParsedSentence(BaseModel):
-    product: Optional[ParsedProduct] = None
-    action: Optional[ParsedAction] = None
+class ParsedSentenceDto(BaseModel):
+    product: Optional[ParsedProductDto] = None
+    action: Optional[ParsedActionDto] = None

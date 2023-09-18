@@ -36,4 +36,3 @@ async def test_simple_builder():
     assert menu.items[5].name == "COOKIE"
     assert menu.items[5].price == Decimal("0.50")
     assert menu.items[5].is_drink is False
-    

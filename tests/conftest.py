@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-
 TESTS_FOLDER = Path(__file__).cwd() / "tests"
+
 
 @pytest.fixture
 def fixtures_path():

@@ -4,16 +4,16 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
-class MenuItem(BaseModel):
+class MenuItemDto(BaseModel):
     name: str
     price: Decimal
     is_drink: bool
 
 
-class Menu(BaseModel):
-    items: List[MenuItem]
+class MenuDto(BaseModel):
+    items: List[MenuItemDto]
 
-    async def get_item_by_name(self, name: str) -> Optional[MenuItem]:
+    async def get_item_by_name(self, name: str) -> Optional[MenuItemDto]:
         for item in self.items:
             if item.name.upper() == name.upper():
                 return item

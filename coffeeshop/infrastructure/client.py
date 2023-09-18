@@ -1,6 +1,5 @@
-import sys
-
 import asyncio
+import sys
 
 import settings
 from coffeeshop.infrastructure.file.reader import read_file
@@ -21,5 +20,6 @@ async def run_client(filepath: str) -> None:
         await writer.wait_closed()
     except OSError as exc:
         print(str(exc))
+
 
 asyncio.run(run_client(filepath=sys.argv[1]))

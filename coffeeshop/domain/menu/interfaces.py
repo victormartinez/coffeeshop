@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from decimal import Decimal
-from typing import Protocol, List, Optional
+from typing import List, Optional, Protocol
 
 
 class MenuItem(Protocol):
@@ -17,7 +17,6 @@ class Menu(Protocol):
 
 
 class AbstractMenuBuilder(ABC):
-
     @abstractmethod
     async def run(self) -> Menu:
         pass
