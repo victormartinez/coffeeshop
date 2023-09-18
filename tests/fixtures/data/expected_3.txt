@@ -1,0 +1,16 @@
+I'd like an americano.
+Would you like to add a cookie for $0.50?
+Yes, please.
+Would you like anything else?
+I'd like an espresso.
+Would you like anything else?
+I'd like a latte.
+Would you like anything else?
+I'd like a macchiato.
+Would you like anything else?
+I'd like a tea.
+Would you like anything else?
+I'd like a cookie.
+Would you like anything else?
+That's all.
+Your total is $11.05. Thank you and have a nice day!

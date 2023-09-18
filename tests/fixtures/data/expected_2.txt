@@ -1,0 +1,6 @@
+I'd like an americano.
+Would you like to add a cookie for $0.50?
+Yes, please.
+Would you like anything else?
+That’s all.
+Your total is $2.01. Thank you and have a nice day!

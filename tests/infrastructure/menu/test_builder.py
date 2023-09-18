@@ -18,7 +18,6 @@ async def test_simple_builder():
     builder = SimpleMenuBuilder(items)
     menu = await builder.run()
     assert len(menu.items) == 6
-
     assert menu.items[0].name == "AMERICANO"
     assert menu.items[0].price == Decimal("1.51")
     assert menu.items[0].is_drink is True
