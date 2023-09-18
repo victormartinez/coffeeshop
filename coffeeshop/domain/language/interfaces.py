@@ -18,8 +18,18 @@ class ParsedSentence(Protocol):
     action: Optional[ParsedAction] = None
 
 
+class AbstractSentenceCleaner(ABC):
+
+    @abstractmethod
+    async def clean(self, sentence: str) -> str:
+        pass
+
 
 class AbstractLanguageParser(ABC):
+
+    def __init__(self, cleaner: AbstractSentenceCleaner) -> None:
+        self.cleaner = cleaner
+
     @abstractmethod
     async def run(self, sentence: str) -> ParsedSentence:
         pass

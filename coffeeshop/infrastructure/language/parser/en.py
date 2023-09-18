@@ -1,4 +1,3 @@
-import re
 from typing import List
 
 from coffeeshop.domain.language.interfaces import AbstractLanguageParser
@@ -13,16 +12,16 @@ from coffeeshop.infrastructure.language.dto import (
 class EnParser(AbstractLanguageParser):
 
     async def run(self, sentence: str) -> ParsedSentence:
-        cleaned_sentence = re.sub(r'[^\w\s]', '', sentence).upper()
+        cleaned_sentence = await self.cleaner.clean(sentence)
         tokens = cleaned_sentence.split(" ")
         intent_tokens = ["ID", "DONT", "LIKE", "WANT"]
         is_product = len(set(intent_tokens).intersection(tokens))
         if is_product:
             product = await self._parse_product(tokens)
-            return ParsedSentence(product=product)
+            return ParsedSentence(cleaned_sentence=cleaned_sentence, product=product)
         
         action = await self._parse_action(tokens)
-        return ParsedSentence(action=action)
+        return ParsedSentence(cleaned_sentence=cleaned_sentence, action=action)
 
     async def _parse_product(self, tokens: List[str]) -> ParsedProduct:
         order_item_token = tokens[-1]
